@@ -1,8 +1,8 @@
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:yes_no_app/presentation/widgets/chat/him_message_bubble.dart';
 import 'package:yes_no_app/presentation/widgets/chat/my_message_bubble.dart';
+import 'package:yes_no_app/presentation/widgets/shared/message_field_box.dart';
 
 class ChatScreen extends StatelessWidget {
   const ChatScreen({super.key});
@@ -45,7 +45,9 @@ class _ChatView extends StatelessWidget {
                   : const MyMessageBubble();
 
                 },)),
-              const Text('Roble Sistemas © ')
+                //Caja de texto de mensajeria
+                const MessageFieldBox(),
+              //const Text('Roble Sistemas © ')
           ],
         ),
       ),
