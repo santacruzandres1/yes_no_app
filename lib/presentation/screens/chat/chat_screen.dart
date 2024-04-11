@@ -50,7 +50,8 @@ class _ChatView extends StatelessWidget {
                   : MyMessageBubble(message: message);
                   },)),
                 //Caja de texto de mensajeria
-                const MessageFieldBox(),
+                //  MessageFieldBox(onValue: (value) => chatProvider.sendMessge(value),), //manera larga
+                 MessageFieldBox(onValue: chatProvider.sendMessge,), //Forma corta
               //const Text('Roble Sistemas © ')
           ],
         ),
