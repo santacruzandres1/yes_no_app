@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:yes_no_app/domain/entities/message.dart';
@@ -16,18 +14,17 @@ class ChatScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: const Padding(
-
           padding: EdgeInsets.all(4.0),
           child: CircleAvatar(
-            backgroundImage: NetworkImage('https://cdn.urbantecno.com/urbantecno/s/2023-01-05-11-27-elon-musk.png'),
+            backgroundImage: NetworkImage(
+                'https://cdn.urbantecno.com/urbantecno/s/2023-01-05-11-27-elon-musk.png'),
           ),
         ),
         title: const Text('Elon '),
         centerTitle: false,
-        ),
+      ),
       body: _ChatView(),
     );
-
   }
 }
 
@@ -41,18 +38,22 @@ class _ChatView extends StatelessWidget {
         child: Column(
           children: [
             Expanded(
-              child:ListView.builder(
-                itemCount: chatProvider.messageList.length,
-                itemBuilder: (context, index) {
-                  final message = chatProvider.messageList[index];
-                  return (message.fromWho == FromWho.yours)
-                  ? const HimMessageBubble()
-                  : MyMessageBubble(message: message);
-                  },)),
-                //Caja de texto de mensajeria
-                //  MessageFieldBox(onValue: (value) => chatProvider.sendMessge(value),), //manera larga
-                 MessageFieldBox(onValue: chatProvider.sendMessge,), //Forma corta
-              //const Text('Roble Sistemas © ')
+                child: ListView.builder(
+              controller: chatProvider.chatScrollController,
+              itemCount: chatProvider.messageList.length,
+              itemBuilder: (context, index) {
+                final message = chatProvider.messageList[index];
+                return (message.fromWho == FromWho.yours)
+                    ? const HimMessageBubble()
+                    : MyMessageBubble(message: message);
+              },
+            )),
+            //Caja de texto de mensajeria
+            //  MessageFieldBox(onValue: (value) => chatProvider.sendMessge(value),), //manera larga
+            MessageFieldBox(
+              onValue: chatProvider.sendMessge,
+            ), //Forma corta
+            //const Text('Roble Sistemas © ')
           ],
         ),
       ),
