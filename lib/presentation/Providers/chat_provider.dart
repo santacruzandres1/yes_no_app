@@ -10,6 +10,7 @@ class ChatProvider extends ChangeNotifier {
     Message(text: 'O te gustaria tomar un cafe antes?', fromWho: FromWho.me),
   ];
   Future<void> sendMessge(String text) async {
+    await Future.delayed(const Duration(milliseconds: 100));
     if(text.isEmpty)return;
     final newMessage = Message(text: text, fromWho: FromWho.me);
     messageList.add(newMessage);
